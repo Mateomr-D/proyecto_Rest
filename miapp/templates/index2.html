@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>GAMER</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+   <style>
+      body {
+         background-color: rgb(0, 0, 0);
+         display: flex;
+         flex-direction: column;
+      }
+
+      ul {
+
+         position: relative;
+         top: 50%;
+         left: 88%;
+         transform: translate(-50%, -50%);
+         display: flex;
+      }
+
+      ul li {
+
+         list-style: none;
+         font-weight: 500;
+         font-size: 4vw;
+         letter-spacing: 1vw;
+         color: #555;
+         text-shadow: none;
+         animation: anim 3s infinite linear;
+      }
+
+      ul ol {
+         color: #03bb3afd;
+      }
+
+      @keyframes anim {
+         0% {
+            color: #555;
+            text-shadow: none;
+         }
+
+         18% {
+            color: #555;
+            text-shadow: none;
+         }
+
+         20% {
+            color: #ffea00;
+            text-shadow: 0 0 1vw #ffc400,
+               0 0 3vw #f44336;
+         }
+
+         30% {
+            color: #555;
+            text-shadow: none;
+         }
+
+         35% {
+            color: #ffea00;
+            text-shadow: 0 0 1vw #ffc400,
+               0 0 3vw #f44336;
+         }
+
+         70% {
+            color: #555;
+            text-shadow: none;
+         }
+
+         85% {
+            color: #ffea00;
+            text-shadow: 0 0 1vw #ffc400,
+               0 0 3vw #f44336;
+         }
+
+         90% {
+            color: #555;
+            text-shadow: none;
+         }
+
+         100% {
+            color: #ffea00;
+            text-shadow: 0 0 1vw #ffc400,
+               0 0 3vw #f44336;
+         }
+      }
+
+      ul li:nth-child(1) {
+         animation-delay: .2s;
+      }
+
+      ul li:nth-child(2) {
+         animation-delay: .4s;
+      }
+
+      ul li:nth-child(3) {
+         animation-delay: .6s;
+      }
+
+      ul li:nth-child(4) {
+         animation-delay: .8s;
+      }
+
+      ul li:nth-child(5) {
+         animation-delay: 1s;
+      }
+
+
+      section {
+         padding: 10px;
+         display: flex;
+         width: 750px;
+         height: 530px;
+         align-self: center;
+      }
+
+      section img {
+         width: 0px;
+         flex-grow: 1;
+         object-fit: cover;
+         opacity: .4;
+         transition: .9s ease;
+         margin: .8px;
+         border: 1px solid rgba(0, 0, 0, 0.622);
+         box-shadow: 0px 0px 30px #03bb3afd;
+         border-radius: 10px;
+
+      }
+
+      /* width: 200px;
+    border-radius: 10px;
+    margin: .8px;
+    border:1px solid rgba(0, 0, 0, 0.622);
+    box-shadow:  0px 0px 10px #03bb3afd ; */
+
+      section img:hover {
+         width: 300px;
+         opacity: 1;
+         filter: contrast(120%);
+      }
+
+      h1 {
+         padding: 8px;
+         background-color: rgb(9, 197, 50);
+         border-radius: 9px;
+         box-shadow: 0px 0px 25px #03bb3afd;
+         border: 1px solid rgba(8, 8, 8, 0.622);
+         color: rgb(0, 0, 0);
+         align-self: center;
+         font-size: 25px;
+         animation: never 4s infinite linear;
+      }
+
+      @keyframes never {
+
+         18% {
+            color: #000000;
+            text-shadow: none;
+         }
+
+         20% {
+            background-color: #000000;
+            box-shadow: none;
+            color: #03bb3afd;
+            text-shadow: 0 0 8vw #03bb3afd,
+               0 0 3vw #000000;
+         }
+      }
+
+      p {
+         background-color: rgb(9, 197, 50);
+         border-radius: 10px;
+         box-shadow: 0px 0px 10px #03bb3afd;
+         border: 1px solid rgba(8, 8, 8, 0.622);
+         color: rgb(1, 12, 4);
+         align-self: flex-start;
+         font-size: 20px;
+         font-style: italic;
+
+      }
+      a{
+         color: white;
+         background-color: #03bb3afd;
+         padding: 10px;
+         border-radius: 20px;
+         width: 100px;
+         text-align: center;
+      }
+   </style>
+
+   <a href="{% url 'wellcome' %}">atras</a>
+
+   <h1>VIDEOJUEGOS</h1>
+
+   <ul>
+      <li>G</li>
+      <li>A</li>
+      <li>M</li>
+      <li>E</li>
+      <li>R</li>
+      <li>&#128526;</li>
+   </ul>
+
+
+   <section>
+
+      <!-- <p>APEX</p> -->
+
+      <img src="apex.jpg">
+
+      <!-- <p>Call of Duty</p> -->
+      <img src="https://www.irrompibles.net/irrwp/wp-content/uploads/2024/10/sparking_zero-1.jpg">
+
+
+      <!-- <p>Metaphor</p> -->
+      <img src="metaphor.jpg" alt="">
+
+
+      <!-- <p>GTV</p> -->
+      <img src="GTV.jpg" alt="">
+
+      <!-- <p>Sparkingzero</p> -->
+      <img src="sparkingzero.jpg" alt="">
+
+   </section>
+
+
+</body>
+
+</html>

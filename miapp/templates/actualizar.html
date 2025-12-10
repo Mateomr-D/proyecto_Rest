@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Usuario</title>
+</head>
+    <style>
+        body{
+            background-color: aqua;
+            
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        .contenedor{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;   
+            align-items: center;       
+            height: 100vh;             
+            background-color: rgb(255, 165, 0);
+        }
+
+        .formulario{
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .m-bottom{
+            margin-bottom: 10px;
+        }
+
+        .btn-volver {
+            background-color: #666;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-volver:hover {
+            background-color: #555;
+        }
+        
+    </style>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Actualizar Usuario</h1>
+
+        {% if infosms %}
+            <div style="
+                background: #e6ffe6;
+                border-left: 5px solid #4CAF50;
+                padding: 12px 18px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                font-family: Arial, sans-serif;
+            ">
+                <p style="
+                    color: #2d6d2d;
+                    font-weight: bold;
+                    margin: 0;
+                    font-size: 15px;
+                ">
+                    {{ infosms }}
+                </p>
+            </div>
+        {% endif %}
+    
+        <form class="formulario" method="post">
+        {% csrf_token %}
+            <label for="usuario">Nombre de usuario:</label>
+            <input type="text" class="m-bottom" id="usuario" name="username" value="{{ usuario.username }}" required>
+        
+            <label for="password">Nueva contraseña (opcional):</label>
+            <input type="password" class="m-bottom" id="password" name="password" placeholder="Dejar en blanco para no cambiar">
+    
+            <label for="imagen">URL de la imagen:</label>
+            <input type="url" class="m-bottom" id="imagen" name="imagen" value="{{ usuario.imagen }}" placeholder="https://ejemplo.com/imagen.jpg">
+
+            <button type="submit">Actualizar Datos</button>
+            <a href="{% url 'usuarios' %}" class="btn-volver">Volver a Usuarios</a>
+        </form>
+
+    </div>    
+
+</body>
+</html>

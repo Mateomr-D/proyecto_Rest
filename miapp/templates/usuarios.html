@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios Registrados</title>
+    <style>
+        body {
+            font-family: cursive;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: inset 3px 3px 3px black,
+            inset -3px -3px 3px rgb(109, 109, 109);
+            border-radius:  10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fcfcfc;
+            margin-bottom: 50px;
+            background-color: #4CAF50;
+            padding: 10px;
+            border-radius: 50px;
+            width: 400px;         
+            text-align: center;
+            justify-self: center;
+        }
+
+        .contenedor-usuarios {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .tarjeta-usuario {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .tarjeta-usuario:hover{
+            transform: translateY(-3px);
+            box-shadow:  3px 3px 3px black,
+            inset -3px -3px 3px rgb(109, 109, 109);
+        }
+
+        .tarjeta-usuario img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #4CAF50;
+        }
+        .tarjeta-usuario img:hover{
+            box-shadow:  0px 0px 10px #4CAF50;
+           
+
+        }
+
+        .tarjeta-usuario h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .sin-imagen {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 60px;
+            color: #999;
+        }
+
+        .btn-actualizar {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-actualizar:hover {
+            transform: translateY(-2px);
+            background-color: #45a049;
+            box-shadow:  3px 3px 3px black,
+            inset -3px -3px 3px rgb(109, 109, 109);
+        }
+        .btn-volver{
+            position: relative;
+            left: 20px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+        .btn-volver:hover{
+            background-color: #45a049;
+            box-shadow:  3px 3px 3px black,
+            inset -3px -3px 3px rgb(109, 109, 109);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Usuarios Registrados</h1>
+    <a href="{% url 'menu' %}" class="btn-volver">Volver a Menu</a>  
+
+    <div class="contenedor-usuarios">
+        {% for usuario in usuarios %}
+            <div class="tarjeta-usuario">
+                {% if usuario.imagen %}
+                    <img src="{{ usuario.imagen }}" alt="{{ usuario.username }}">
+                {% else %}
+                    <div class="sin-imagen">👤</div>
+                {% endif %}
+                
+                <h3>{{ usuario.username }}</h3>
+                <p>ID: {{ usuario.id }}</p>
+                
+                <button class="btn-actualizar" onclick="window.location.href='/actualizar/{{ usuario.id }}/'">
+                    Actualizar
+                </button>
+            </div>
+        {% empty %}
+            <p style="grid-column: 1 / -1; text-align: center;">No hay usuarios registrados</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

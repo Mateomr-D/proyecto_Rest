@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SESION - AnimeVerse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .som {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.781) 40%, #893ae369 90%);
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .login-container {
+            text-align: center;
+            /* overflow: hidden; */
+
+            border-radius: 31px;
+            border: 0px solid #000000;
+            width: 450px;
+            position: absolute;
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            justify-self: center;
+            align-items: center;
+            display: flex;
+            margin-bottom: 10px;
+            max-height: 90px;
+            max-width: 150px;
+            overflow: hidden;
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+        }
+
+        .log {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            filter: drop-shadow(0 0px 1px #3ac5e3);
+        }
+
+        .log:hover {
+            filter: drop-shadow(0 0px 2px #fcfbff);
+        }
+
+        .formulario {
+            --nr: #3ac5e3;
+            background: linear-gradient(#3ac4e38e, rgba(0, 0, 0, 0.87) 40%);
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 20px #000000,
+                -10px -10px 20px #000000;
+            transition: 5s ease;
+
+        }
+
+        .formulario:hover {
+            box-shadow: inset 10px 10px 20px #3ac4e38e,
+                inset -10px -10px 20px #3ac4e38e;
+            border: 2px solid #3ac5e3;
+        }
+
+        .formulario h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .formulario label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            margin: 10px 0 5px;
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.6s;
+        }
+
+        .formulario input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--nr);
+            background: transparent;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        /* .formulario .password{
+    width: 250px;
+    position: relative;
+    right: 25px;
+} */
+        .formulario .checkbox {
+            position: relative;
+            bottom: 77px;
+            left: 280px;
+            height: 20px;
+            width: 50px;
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 1s;
+        }
+
+        input[type="checkbox"] {
+            accent-color: red;
+        }
+
+        input[type="email"]:focus {
+            border-color: #3ac5e3;
+            box-shadow: 0 0 5px 1px #3ac5e3;
+            transform: translateY(-2px);
+            background-color: #3ac4e32a;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3ac5e3;
+            box-shadow: 0 0 5px 1px #3ac5e3;
+            transform: translateY(-2px);
+            background-color: #3ac4e32a;
+        }
+
+        input[type="password"]:focus {
+            border-color: #3ac5e3;
+            box-shadow: 0 0 5px 1px #3ac5e3;
+            transform: translateY(-2px);
+            background-color: #3ac4e32a;
+        }
+
+        .formulario input::placeholder {
+            color: #9a9da7;
+        }
+
+        .slide {
+            --color: #000000;
+            --hover: #3ac5e3;
+            width: 70%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid var(--hover);
+            color: #fff;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 2s;
+            right: 20px;
+            position: relative;
+
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 1s;
+
+        }
+
+        .slide:hover,
+        .slide:focus {
+            box-shadow: inset 30em 0 0 0 var(--hover);
+            color: var(--color);
+        }
+
+        .links {
+            margin-top: 15px;
+            font-size: 13px;
+
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .links a {
+            color: #3ac5e3;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+
+
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="video-background">
+        <video id="bgVideo" autoplay muted loop>
+            <source src="mv-fnd.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="som"></div>
+
+
+    <div class="login-container">
+
+
+
+        {% if infosms %}
+        <div class="error-message">
+            {{ infosms }}<br>
+            {% if infosms2 %}
+            <br>{{ infosms2 }}
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <form method="post" class="formulario">
+            {% csrf_token %}
+
+            <div class="logo">
+                <img src="../img/logo1.png" alt="" class="log">               
+            </div>
+
+            <h2>Acceder</h2>
+
+
+            <label for="usuario">Nombre de Usuario</label>
+            <input type="text" id="usuario" name="username" placeholder="Usuario" required>
+
+
+
+            <label for="password">Contraseña</label>
+
+            <input class="password" type="password" id="password" name="password" placeholder="Contraseña" required>
+
+            <input type="checkbox" onclick="password.type = this.checked ? 'text' : 'password'" class="checkbox">
+
+
+            <button type="submit" class="slide">ACCEDER</button>
+
+            <div class="links">
+                ¿Olvidaste tu contraseña? <span class="separator">|</span>
+                <a href="{% url 'formulario' %}">Crear cuenta</a>
+            </div>
+        </form>
+
+    </div>
+</body>
+
+</html>

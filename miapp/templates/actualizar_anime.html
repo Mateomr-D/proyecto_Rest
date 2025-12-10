@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Anime</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #f39c12;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-back {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px 20px;
+            background: rgba(46, 204, 113, 0.2);
+            border-left: 4px solid #2ecc71;
+            border-radius: 10px;
+            color: #a8f5c8;
+            font-size: 14px;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .form-card {
+            background: rgba(40, 40, 60, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-title {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #f39c12;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-title">
+            ✏️ Actualizar Anime
+        </div>
+        <a href="{% url 'menu' %}" class="btn-back">← Volver al Menú</a>
+    </header>
+
+    {% if infosms %}
+        <div class="success-message">
+            {{ infosms }}
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="form-card">
+            <h2 class="form-title">Editar "{{ anime.nombre }}"</h2>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="nombre">Nombre del Anime *</label>
+                    <input type="text" id="nombre" name="nombre" value="{{ anime.nombre }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción *</label>
+                    <textarea id="descripcion" name="descripcion" required>{{ anime.descripcion }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">URL de la Imagen *</label>
+                    <input type="url" id="imagen" name="imagen" value="{{ anime.imagen }}" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="episodios">Episodios *</label>
+                        <input type="number" id="episodios" name="episodios" value="{{ anime.episodios }}" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calidad">Calidad *</label>
+                        <select id="calidad" name="calidad" required>
+                            <option value="SUB" {% if anime.calidad == 'SUB' %}selected{% endif %}>Subtitulado</option>
+                            <option value="DUB" {% if anime.calidad == 'DUB' %}selected{% endif %}>Doblado</option>
+                            <option value="RAW" {% if anime.calidad == 'RAW' %}selected{% endif %}>Raw</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="genero">Género *</label>
+                        <input type="text" id="genero" name="genero" value="{{ anime.genero }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Rating *</label>
+                        <input type="number" id="rating" name="rating" value="{{ anime.rating }}" min="0" max="10" step="0.1" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">💾 Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
